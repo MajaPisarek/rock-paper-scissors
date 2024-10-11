@@ -1,0 +1,145 @@
+#
+#           project:    rpslq.py
+#            author:    Maja Pisarek
+#           version:    10/10/24
+#
+#   description: Rock, Paper, Scissors, Lizard, Spock for 1 or 2 players
+#
+import random
+
+# === Introduce the Game
+# Rules = Rock, Paper, Scissors, Lizard, Spock
+print("""
+=== RPS Duel === \n
+    The players may enter the arena
+""")
+
+# === Get the names of our challengers
+player1 = input("First player, state your name? : ")
+player2 = input("Second player, state your name or enter 'C' to practice against the computer: ")
+weaponsFullName = ["Rock", "Paper", "Scissors", "Lizard", "Spock"]
+computerPlayer = "Computer"
+weapons = ["R", "P", "S", "L", "q"]
+score1 = score2 = 0
+isPlaying = True
+
+while isPlaying:
+    # === Choose your move
+    print("""
+    On the table before you lie five weapons:
+        [R]ock : Earths paperweight
+        [S]cissors: Two blades stuck in a never-ending tango
+        [P]aper: Trees second chance at life
+        [L]izard: A mini dinosaur that forgot how to roar and decided to chill on rocks instead
+        [V]Spock: The universe's mose logical eyebrow-raising machine
+    """)
+
+    weapon1 = input(f"{player1}, choose your weapon! : ")
+    if player2 == "C":  # Computer randomly chooses a weapon
+        randomWeapon = random.randint(0, 4)
+        weapon2 = weapons[randomWeapon]
+        print(f" Computer chooses {weaponsFullName[randomWeapon]}")
+    else:
+        weapon2 = input(f"{player2}, choose your weapon! : ")
+
+    # === Resolve combat
+    if weapon1 == "R":  # Player1 chooses Rock
+        if weapon2 == "R":
+            print("Draw!")
+        elif weapon2 == "P":
+            print(f"Paper covers Rock! {player2} wins this round!")
+            score2 = score2 + 1
+        elif weapon2 == "q":
+            print(f"Spock vaporizes Rock! {player2} wins this round!")
+            score2 = score2 + 1
+        elif weapon2 == "L":
+            print(f"Rock crushes Lizard! {player1} wins this round!")
+            score1 = score1 + 1
+        else:  # weapon2 must be Scissors
+            print(f"Rock crushes Scissors! {player1} wins this round!")
+            score1 = score1 + 1
+
+    elif weapon1 == "P":  # Player1 chooses Paper
+        if weapon2 == "P":
+            print("Draw!")
+        elif weapon2 == "R":
+            print(f"Paper covers Rock! {player1} wins this round!")
+            score1 = score1 + 1
+        elif weapon2 == "q":
+            print(f"Paper disproves Spock! {player1} wins this round!")
+            score1 = score1 + 1
+        elif weapon2 == "L":
+            print(f"Lizard eats Paper! {player2} wins this round!")
+            score2 = score2 + 1
+        else:
+            print(f"Scissors cut Paper! {player2} wins this round!")
+            score2 = score2 + 1
+
+    elif weapon1 == "L":  # Player1 chooses Lizard
+        if weapon2 == "L":
+            print("Draw!")
+        elif weapon2 == "q":
+            print(f"Lizard poisons Spock! {player1} wins this round!")
+            score1 = score1 + 1
+        elif weapon2 == "P":
+            print(f"Lizard eats Paper! {player1} wins this round!")
+            score1 = score1 + 1
+        elif weapon2 == "R":
+            print(f"Rock crushes Lizard! {player2} wins this round!")
+            score2 = score2 + 1
+        else:
+            print(f"Scissors decapitate Lizard! {player2} wins this round!")
+            score2 = score2 + 1
+
+    elif weapon1 == "V":  # Player1 chooses Spock
+        if weapon2 == "q":
+            print("Draw!")
+        elif weapon2 == "S":
+            print(f"Spock smashes Scissors! {player1} wins this round!")
+            score1 = score1 + 1
+        elif weapon2 == "R":
+            print(f"Spock vaporizes Rock! {player1} wins this round!")
+            score1 = score1 + 1
+        elif weapon2 == "L":
+            print(f"Lizard poisons Spock! {player2} wins this round!")
+            score2 = score2 + 1
+        else:
+            print(f"Paper disproves Spock! {player2} wins this round!")
+            score2 = score2 + 1
+
+    else:  # weapon1 must be Scissors
+        if weapon2 == "S":
+            print("Draw!")
+        elif weapon2 == "L":
+            print(f"Scissors execute Lizard! {player1} wins this round!")
+            score1 = score1 + 1
+        elif weapon2 == "P":
+            print(f"Scissors cut Paper! {player1} wins this round!")
+            score1 = score1 + 1
+        elif weapon2 == "q":
+            print(f"Spock breaks Scissors! {player2} wins this round!")
+            score2 = score2 + 1
+        else:
+            print(f"Rock breaks Scissors! {player2} wins this round!")
+            score2 = score2 + 1
+
+    print(f"{player1} scored {score1} points.")
+    if player2 == "C":
+        print(f"{computerPlayer} scored {score2} points.")
+    else :
+        print(f"{player2} scored {score2} points.")
+
+    # == Play again?
+    ask = input("do you want to play another round? : ")
+    if ask != "Y" :
+        isPlaying = False
+
+if score1 > score2:
+    print(f"{player1} won the duel with {score1} points!")
+elif score2 > score1:
+    if player2 == "C": player2 = computerPlayer
+    print(f"{player2} won the duel with {score2} points!")
+else:
+    print(""
+          "draw!")
+
