@@ -23,7 +23,7 @@ weapons = ["R", "P", "S", "L", "q"]
 score1 = score2 = 0
 isPlaying = True
 
-while isPlaying:
+while isPlaying is True:
     # === Choose your move
     print("""
     On the table before you lie five weapons:
@@ -140,6 +140,7 @@ elif score2 > score1:
     if player2 == "C": player2 = computerPlayer
     print(f"{player2} won the duel with {score2} points!")
 else:
-    print(""
-          "draw!")
+    print("""
+          draw!
+    """)
 
